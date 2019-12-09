@@ -1,47 +1,51 @@
-import React,{useState} from 'react';
-import './App.css';
+import React from 'react';
+import axios from 'axios';
 
-function App() {
+const imageStyle = {
+  height: "30vh",
+  width: "30vh",
+  borderRadius: "50%",
+  overflow: "hidden"
+};
 
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      username: "blake",
-      profileImage:
-        "http://next-curriculum-instagram.s3.amazonaws.com/idol2-blake.jpg"
-    },
-    {
-      id: 2,
-      username: "ryanG",
-      profileImage:
-        "http://next-curriculum-instagram.s3.amazonaws.com/idol1-ryan.jpg"
-    },
-    {
-      id: 3,
-      username: "bigfan",
-      profileImage:
-        "http://next-curriculum-instagram.s3.amazonaws.com/bigfan-9AE7468E-4C35-41D1-AA68-31939891B5E1.png"
-    }
-  ]);
 
-  return (
-    <div>
-      <h1>Home Page</h1>
-      <ul>
+class App extends React.Component{
+  
+  state ={
+    users:[],
+    usreImage:[],
+  };
 
-        {/* {users.map(user => (
-          <li> */}
-          {/* assing key */}
-        {users.map((user, index) => (
-          <li key={index}>
+componentDidMount(){
+  axios.get('https://insta.nextacademy.com/api/v1/users')
+  .then(result => {
+    console.log(result);
 
-            {user.id}: {user.profileImage}
-          </li>
-
-        ))}
-      </ul>
-    </div>
-  );
+      // If successful, we do stuffs with 'result'
+      this.setState({ 
+        users: result.data,
+      });
+  })
+  .catch(error => {
+    // If unsuccessful, we notify users what went wrong
+    console.log("ERROR: ", error);
+  });
 }
+
+render(){
+  return <ul>{this.state.users.map(user => 
+  <li>{user.username}
+  <img 
+  className="mb-5"
+  style={imageStyle}
+  src={user.profileImage}
+  alt="profileImage"
+  />
+  </li>
+)}
+  </ul>;
+  }
+}
+
 
 export default App;
