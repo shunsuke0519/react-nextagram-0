@@ -1,5 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import loader from "./loading2.gif";
+import { css } from '@emotion/core';
+import { FadeLoader } from 'react-spinners';
+
 
 const imageStyle = {
   height: "30vh",
@@ -8,12 +12,19 @@ const imageStyle = {
   overflow: "hidden"
 };
 
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+`;
+
 
 class App extends React.Component{
   
   state ={
     users:[],
     usreImage:[],
+    isLoading: true,
   };
 
 componentDidMount(){
@@ -24,6 +35,7 @@ componentDidMount(){
       // If successful, we do stuffs with 'result'
       this.setState({ 
         users: result.data,
+        isLoading: false
       });
   })
   .catch(error => {
@@ -33,6 +45,20 @@ componentDidMount(){
 }
 
 render(){
+  if(this.state.isLoading){
+    return(
+      <div className='sweet-loading'>
+        <FadeLoader
+          css={override}
+          sizeUnit={"px"}
+          size={50}
+          color={'#123abc'}
+          loading={this.state.loading}
+        />
+      </div> 
+  );
+}
+
   return <ul>{this.state.users.map(user => 
   <li>{user.username}
   <img 
