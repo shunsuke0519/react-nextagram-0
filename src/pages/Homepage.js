@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import loader from "./loading2.gif";
+import loader from "../loading2.gif";
 import { css } from '@emotion/core';
 import { FadeLoader } from 'react-spinners';
-import UserImage from "./UserImage";
+import UserImage from "../containers/UserImage";
 
 
 

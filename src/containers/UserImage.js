@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import logo from "../logo.svg";
+import "../App.css";
 import axios from "axios";
 import { Jumbotron, Button } from "reactstrap";
 import styled from "styled-components";
