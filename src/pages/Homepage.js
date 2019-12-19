@@ -4,8 +4,7 @@ import loader from "../loading2.gif";
 import { css } from '@emotion/core';
 import { FadeLoader } from 'react-spinners';
 import UserImage from "../containers/UserImage";
-
-
+import NavbarComponent from "../NavbarComponent";
 
 const imageStyle = {
   height: "30vh",
@@ -62,7 +61,11 @@ render(){
 }
 
   return (
-  <div>
+<div>
+<NavbarComponent></NavbarComponent>
+
+
+
     <ul style={{ listStyleType: "none", padding: "0"}}>
       {this.state.users.map((user, index) => (
   <li key={index}>
