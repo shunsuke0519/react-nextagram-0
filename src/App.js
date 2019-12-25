@@ -3,6 +3,7 @@ import Homepage from "./pages/Homepage";
 import UserProfile from './pages/UserProfile';
 import { Route, Link } from "react-router-dom";
 import Username from "./pages/UserName";
+import LoginPage from "./pages/LoginPage";
 
 
 class App extends React.Component{
@@ -29,6 +30,14 @@ render(){
             return <UserProfile {...props} />;
           }}
         />
+
+<Route
+          path="/Login"
+          component={props => {
+            return <LoginPage {...props} signUpUser={this.signUpUser} />;
+          }}
+        />
+
         </div>
 
   ); 
